@@ -3,6 +3,12 @@ import Link from 'next/link';
 import { products } from '@/data/products';
 import { notFound } from 'next/navigation';
 
+export async function generateStaticParams() {
+    return products.map((product) => ({
+        id: product.id.toString(),
+    }));
+}
+
 export async function generateMetadata({ params }) {
     // Await params in Next.js 15+
     const resolvedParams = await params;
